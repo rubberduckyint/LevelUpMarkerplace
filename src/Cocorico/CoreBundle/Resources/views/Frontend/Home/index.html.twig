@@ -1,0 +1,89 @@
+{% extends '::base.html.twig' %}
+
+{%- block meta_title -%}
+    {{ 'home.meta_title'|trans({}, 'cocorico_meta') ~ " - " ~ cocorico_site_name }}
+{%- endblock -%}
+
+{%- block meta_description -%}
+    {{ 'home.meta_desc'|trans({}, 'cocorico_meta') }}
+{%- endblock -%}
+
+{% block theme %}home-page{% endblock %}
+
+{% block layout %}
+    {% embed '@CocoricoCore/Frontend/layout.html.twig' %}
+
+        {% trans_default_domain 'cocorico_home' %}
+
+        {% block sub_header %}
+            {#<!-- visual -->#}
+            <div class="visual text-center">
+            
+		<div class="container-fluid" style="margin-top:105px;">
+			<div class="row hidden-md hiddem-sm hidden-xs" style="padding-bottom: 55px;">
+				<h2 >A better way to get <br>and<br> pay for medical services</h2>
+				<h5></h5>
+			</div>
+    			<div class="row">
+      				<div class="col-lg-12 col-md-12 col-sm-12 col-xs-12 center-block">
+					{{ render(controller('CocoricoCoreBundle:Frontend/ListingSearch:searchHomeForm')) }}
+				</div>
+    			</div>
+  		</div>
+
+
+	    </div>
+<!-- {{ render(controller('CocoricoCoreBundle:Frontend/ListingSearch:searchHomeForm')) }}-->
+
+        {% endblock %}
+ 
+        {% block main %}
+            
+
+            {% include 'CocoricoCoreBundle:Frontend/Home:_high_rank.html.twig'  with {
+            'listings': listings
+            } only %}
+
+           
+        {% endblock %}
+
+        {% block modal %}
+            {% include 'CocoricoCoreBundle:Frontend/Common:_modal.html.twig' only %}
+        {% endblock %}
+    {% endembed %}
+{% endblock %}
+
+
+{% block javascripts %}
+    {{ parent() }}
+
+    {#Geocoding #}
+    {% include '@CocoricoCore/Frontend/ListingResult/js/_geocoding_js.html.twig' with {
+    'map_elt': '',
+    'auto_complete_elt': '#location'
+    } only %}
+
+    <script>
+        // Categories
+        $(function () {
+
+            // Set default favourites in the listing
+            setDefaultFavourites();
+
+            initMultiSelect(
+                    '#categories',
+                    '{{ "multiselect.all_selected"|trans({}, "cocorico")|e('js') }}',
+                    '{{ "multiselect.none_selected"|trans({}, "cocorico")|e('js') }}',
+                    '{{ "multiselect.num_selected"|trans({}, "cocorico")|e('js') }}'
+            );
+        });
+    </script>
+{% endblock %}
+
+{% block markup_jsonld %}
+    {{ parent() }}
+
+    {% include 'CocoricoSeoBundle:Frontend:Home/_index_markup.jsonld.twig' ignore missing with {
+    'listings': listings
+    } only %}
+{% endblock %}

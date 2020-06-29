@@ -26,6 +26,7 @@ use Symfony\Component\EventDispatcher\EventDispatcherInterface;
 use Symfony\Component\Form\AbstractType;
 use Symfony\Component\Form\Extension\Core\Type\CheckboxType;
 use Symfony\Component\Form\Extension\Core\Type\TextareaType;
+use Symfony\Component\Form\Extension\Core\Type\HiddenType;
 use Symfony\Component\Form\FormBuilderInterface;
 use Symfony\Component\Form\FormError;
 use Symfony\Component\Form\FormEvent;
@@ -35,6 +36,8 @@ use Symfony\Component\Intl\Intl;
 use Symfony\Component\OptionsResolver\OptionsResolver;
 use Symfony\Component\Validator\Constraints\IsTrue;
 use Symfony\Component\Validator\Constraints\Valid;
+use Symfony\Component\Validator\Constraints\NotBlank;
+
 
 class BookingNewType extends AbstractType implements TranslationContainerInterface
 {
@@ -111,6 +114,18 @@ class BookingNewType extends AbstractType implements TranslationContainerInterfa
                     'allow_single_day' => $this->allowSingleDay,
                     'end_day_included' => $this->endDayIncluded,
                     'error_bubbling' => false,
+                )
+            )
+            ->add('token', HiddenType::class,
+                array(
+                    'constraints' => new NotBlank(),
+                    'mapped' => false
+                )
+            )
+            ->add('amount', HiddenType::class,
+                array(
+                    'constraints' => new NotBlank(),
+                    'mapped' => false
                 )
             )
             ->add(
@@ -205,7 +220,6 @@ class BookingNewType extends AbstractType implements TranslationContainerInterfa
             FormEvents::SUBMIT,
             function (FormEvent $event) {
                 $form = $event->getForm();
-
                 $tac = $form->get('tac')->getData();
                 if (empty($tac)) {
                     $form['tac']->addError(

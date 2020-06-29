@@ -363,6 +363,11 @@ class User extends BaseUser implements ParticipantInterface
     protected $timeZone = 'UTC';
 
     /**
+     * @ORM\Column(name="stripe_customer_id", type="string", length=255, nullable=true)
+     */
+    protected $stripeCustomerId;
+
+    /**
      * @ORM\OneToMany(targetEntity="Cocorico\MessageBundle\Entity\Message", mappedBy="sender", cascade={"remove"}, orphanRemoval=true)
      */
     private $messages;
@@ -1060,6 +1065,22 @@ class User extends BaseUser implements ParticipantInterface
     public function setMotherTongue($motherTongue)
     {
         $this->motherTongue = $motherTongue;
+    }
+
+    /**
+     * @return string
+     */
+    public function getStripeCustomerId()
+    {
+        return $this->stripeCustomerId;
+    }
+
+    /**
+     * @param string $stripeCustomerId
+     */
+    public function setStripeCustomerId($stripeCustomerId)
+    {
+        $this->stripeCustomerId = $stripeCustomerId;
     }
 
     /**

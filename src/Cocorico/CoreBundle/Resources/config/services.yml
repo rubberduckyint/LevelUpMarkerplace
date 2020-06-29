@@ -20,6 +20,10 @@ services:
             - "%cocorico.listing_search_max_per_page%"
         public: true
 
+    cocorico.client.stripe:
+        class: Cocorico\CoreBundle\Client\StripeClient
+        arguments: ['%cocorico.stripe_secret_key%', '%payment%', '@doctrine.orm.entity_manager', '@logger']
+
     #Namers
     cocorico.namer.image_namer:
         class:  Cocorico\CoreBundle\Namer\ImageNamer

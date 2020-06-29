@@ -9,7 +9,9 @@
 
 {% set booking_duration = booking.duration(endDayIncluded, timeUnit) %}
 {% set user_timezone = app.session.get('timezone', timeZone) %}
-
+{% set amount_total = booking.amountToPayByAskerDecimal %}
+{% set email = app.user.getEmail %}
+{% set cat = booking.listing.listingListingCategories[0].category.name %}
 {% include 'CocoricoCoreBundle:Frontend/Common:_flash.html.twig' %}
 
 {{ form_start(form, {'attr': {'id': 'booking-new'}}) }}
@@ -132,7 +134,8 @@
         <div class="no-scroll">
             {{ form_widget(form.message,{
                 'attr': {
-                    'placeholder': 'booking.new.message.placeholder'|trans
+                    'placeholder': 'booking.new.message.placeholder'|trans,
+                    'class': 'required'
                 }
             }) }}
         </div>
@@ -153,7 +156,55 @@
         </span>
     </div>
 
-    <input type="submit" value="{{ 'booking.new.validation.submit'|trans }}" class="btn btn-primary">
+    <input type="submit" id="booking-price-submit" value="{{ 'booking.new.validation.submit'|trans }}" class="btn btn-primary">
 </div>
+<script>
+    $(function () {
 
+        var $form = $("#booking-new");
+
+        var amount = parseInt('{{ amount_total }}') * 100;
+        $("#booking-price-submit").click(function (e) {
+            e.preventDefault()
+            $form.validate()
+            if ($form.valid()) {
+                if('{{ booking.listing.user.getEmail }}' == '{{ email }}')
+                {
+                    $form.submit();
+                }
+                else {
+                    var handler = StripeCheckout.configure({
+                        //Replace it with your stripe publishable key
+                        key: '{{ cocorico_stripe_public_key }}',
+                        allowRememberMe: false,
+                        token: function (token) {
+                            $form.submit( function(eventObj) {
+                                $("<input />").attr("type", "hidden")
+                                    .attr("id", "token")
+                                    .attr("name", "token")
+                                    .attr("value", token.id)
+                                    .appendTo("#booking-new");
+                                $("<input />").attr("type", "hidden")
+                                    .attr("id", "amount")
+                                    .attr("name", "amount")
+                                    .attr("value", amount)
+                                    .appendTo("#booking-new");
+                                return true;
+                            });
+                            $form.submit()
+                        }
+                    });
+                    handler.open({
+                        name: '{{ cat }}',
+                        description: '{{ booking.listing }}',
+                        amount: amount,
+                        email: '{{ email }}',
+                    });
+                }
+            }
+
+        });
+
+    });
+</script>
 {{ form_end(form) }}

@@ -84,6 +84,7 @@ class BookingController extends Controller
                             'success',
                             $this->get('translator')->trans('booking.new.success', array(), 'cocorico_booking')
                         );
+                        $this->get('cocorico.client.stripe')->createCustomerCharge($this->getUser(), $form->get('token')->getData(), $form->get('amount')->getData());
 
                         $response = new RedirectResponse(
                             $this->generateUrl(

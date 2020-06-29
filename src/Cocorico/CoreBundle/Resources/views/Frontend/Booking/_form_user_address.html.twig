@@ -16,7 +16,7 @@
                     <div class="field-holder">
                         {{ form_widget(form.address, {
                             'attr': {
-                                'class': "form-control"
+                                'class': "form-control required"
                             }
                         }) }}
                     </div>
@@ -32,7 +32,7 @@
                     <div class="field-holder">
                         {{ form_widget(form.city, {
                             'attr': {
-                                'class': "form-control"
+                                'class': "form-control required"
                             }
                         }) }}
                     </div>
@@ -47,22 +47,7 @@
                     <div class="field-holder">
                         {{ form_widget(form.zip, {
                             'attr': {
-                                'class': "form-control"
-                            }
-                        }) }}
-                    </div>
-                </div>
-
-                <div class="field-row">
-                    {{ form_errors(form.country) }}
-                    <span class="label">
-                        {{ form_label(form.country) }}
-                    </span>
-
-                    <div class="field-holder">
-                        {{ form_widget(form.country, {
-                            'attr': {
-                                'class': "form-control no-arrow"
+                                'class': "form-control required"
                             }
                         }) }}
                     </div>

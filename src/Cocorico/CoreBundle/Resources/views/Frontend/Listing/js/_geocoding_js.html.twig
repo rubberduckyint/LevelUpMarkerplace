@@ -130,7 +130,6 @@
                             }
                         }
                     }
-
                     if (geocoding.country_short) {
                         var countries = $.map($('#listing_location_country option'), function (option) {
                             return option.value;
@@ -145,7 +144,11 @@
 //                            $listingLocationCountry.next('.jcf-select').find('span span').html('');
                             $listingLocationError.html("{{ 'geo.location.wrong_country'|trans() }}" + " : " + geocoding.country);
                         }
+                        if (geocoding.country_short != 'US') {
+                            $listingLocationError.html("{{ 'geo.location.wrong_country'|trans }}");
+                        }
                     }
+
                 } else {
                     $listingLocationError.html("{{ 'geo.location.no_result'|trans }}");
                 }
@@ -157,7 +160,7 @@
 
         function addressIsFilled() {
             return ($("#listing_location_street_number").val() || $("#listing_location_route").val() ||
-            $("#listing_location_city").val() || $("#listing_location_zip").val());
+            $("#listing_location_zip").val());
         }
 
         function refreshGeocoding() {

@@ -14,6 +14,7 @@ namespace Cocorico\UserBundle\Form\Type;
 use Symfony\Component\Form\AbstractType;
 use Symfony\Component\Form\Extension\Core\Type\CountryType;
 use Symfony\Component\Form\Extension\Core\Type\TextareaType;
+use Symfony\Component\Form\Extension\Core\Type\HiddenType;
 use Symfony\Component\Form\FormBuilderInterface;
 use Symfony\Component\OptionsResolver\OptionsResolver;
 use Symfony\Component\Validator\Constraints\Valid;
@@ -49,11 +50,11 @@ class UserAddressFormType extends AbstractType
             )
             ->add(
                 'country',
-                CountryType::class,
+                HiddenType::class,
                 array(
                     'label' => 'form.address.country',
                     'required' => false,
-                    'preferred_choices' => array("GB", "FR", "ES", "DE", "IT", "CH", "US", "RU"),
+                    'data' => 'US',
                 )
             );
 

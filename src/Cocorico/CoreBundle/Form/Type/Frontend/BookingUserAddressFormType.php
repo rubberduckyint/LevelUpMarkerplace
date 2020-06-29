@@ -68,16 +68,6 @@ class BookingUserAddressFormType extends AbstractType
                     'label' => 'form.address.zip',
                     'required' => true
                 )
-            )
-            ->add(
-                'country',
-                CountryType::class,
-                array(
-                    'label' => 'form.address.country',
-                    'required' => true,
-                    'preferred_choices' => array("GB", "FR", "ES", "DE", "IT", "CH", "US", "RU"),
-                    'data' => 'FR'
-                )
             );
 
 

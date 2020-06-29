@@ -3,6 +3,10 @@ parameters:
     knp.doctrine_behaviors.translatable_subscriber.translation_fetch_method: EAGER
     #todo: remove when https://github.com/lexik/LexikCurrencyBundle/commit/a4c08e0 will be released
     lexik_currency.doctrine_adapter.class: Cocorico\CurrencyBundle\Adapter\DoctrineCurrencyAdapter
+    payment:
+      currency: USD
+      decimal: true
+      premium_amount: 1
 
 imports:
     - { resource: services.yml }
@@ -31,6 +35,8 @@ twig:
         cocorico_google_tag_manager: "%cocorico.google_tag_manager%"
         cocorico_admin_translation: "%cocorico.admin_translation%"
         cocorico_listing_countries: "%cocorico.listing_countries%"
+        cocorico_stripe_public_key: "%cocorico.stripe_public_key%"
+        cocorico_stripe_secret_key: "%cocorico.stripe_secret_key%"
         #Images sizes
         listing_img_max: "%cocorico.listing_img_max%"
         listing_img_max_upload_size: "%cocorico.listing_img_max_upload_size%"

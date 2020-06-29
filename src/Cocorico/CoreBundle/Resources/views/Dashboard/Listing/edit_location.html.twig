@@ -45,9 +45,9 @@
                             {{ form_errors(form.location.country) }}
                             {{ form_errors(form.location.city) }}
                             <div class="col country">
-                                <span class="label">{{ form_label(form.location.country) }}</span>
+                                <span class="label" hidden="true">{{ form_label(form.location.country) }}</span>
 
-                                <div class="select-holder">
+                                <div class="select-holder" hidden="true">
                                     {{ form_widget(form.location.country, {
                                         'attr': {
                                             'class': "no-arrow"

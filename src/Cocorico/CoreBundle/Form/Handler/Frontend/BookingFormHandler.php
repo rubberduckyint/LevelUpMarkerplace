@@ -23,6 +23,9 @@ use Cocorico\UserBundle\Entity\User;
 use Symfony\Component\EventDispatcher\EventDispatcherInterface;
 use Symfony\Component\Form\Form;
 use Symfony\Component\HttpFoundation\RequestStack;
+use Stripe\Charge;
+use Stripe\Error\Base;
+use Stripe\Stripe;
 
 /**
  * Handle Booking Form
@@ -122,6 +125,7 @@ class BookingFormHandler
             if (count($this->dispatcher->getListeners(BookingFormEvents::BOOKING_NEW_FORM_PROCESS)) > 0) {
                 try {
                     $event = new BookingFormEvent($form);
+
                     $this->dispatcher->dispatch(BookingFormEvents::BOOKING_NEW_FORM_PROCESS, $event);
                     $result = $event->getResult();
                     if ($result !== false) {

@@ -18,6 +18,9 @@ use Symfony\Component\Form\Extension\Core\Type\TextType;
 use Symfony\Component\Form\FormBuilderInterface;
 use Symfony\Component\OptionsResolver\OptionsResolver;
 use Symfony\Component\Validator\Constraints\Valid;
+use Symfony\Component\Validator\Constraints\EqualTo;
+use Symfony\Component\Validator\Constraints\NotBlank;
+
 
 /**
  * ListingLocationType
@@ -35,6 +38,13 @@ class ListingLocationType extends AbstractType
                     'label' => 'listing.form.location.country',
                     'translation_domain' => 'cocorico_listing',//Not recognized elsewhere
                     'required' => true,
+                    'constraints' => array(new NotBlank(),
+                        new EqualTo(array(
+                            'value' => 'US',
+                                'message' => 'The country must be United States'
+                            )
+                        ),
+                    ),
                 )
             )
             ->add(

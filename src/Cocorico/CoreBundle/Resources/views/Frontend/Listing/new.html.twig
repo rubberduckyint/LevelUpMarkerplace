@@ -160,9 +160,9 @@
 
                                             <div class="field-row">
                                                 {{ form_errors(form.location.country) }}
-                                                <span class="label">{{ form_label(form.location.country) }}</span>
+                                                <span  hidden="true" class="label">{{ form_label(form.location.country) }}</span>
 
-                                                <div class="select-holder">
+                                                <div hidden="true" class="select-holder">
                                                     {{ form_widget(form.location.country, {
                                                         'attr': {
                                                             'class': "no-arrow"

@@ -13,6 +13,7 @@ namespace Cocorico\CoreBundle\Model\Manager;
 
 use Cocorico\CoreBundle\Document\ListingAvailability;
 use Cocorico\CoreBundle\Entity\Booking;
+use Cocorico\CoreBundle\Entity\BookingStripe;
 use Cocorico\CoreBundle\Entity\Listing;
 use Cocorico\CoreBundle\Entity\ListingDiscount;
 use Cocorico\CoreBundle\Event\BookingAmountEvent;
@@ -29,6 +30,7 @@ use Cocorico\SMSBundle\Twig\TwigSmser;
 use Cocorico\TimeBundle\Model\DateTimeRange;
 use Cocorico\TimeBundle\Model\TimeRange;
 use Cocorico\UserBundle\Entity\User;
+use Cocorico\CoreBundle\Client\StripeClient;
 use DateInterval;
 use DateTime;
 use Doctrine\Common\Collections\ArrayCollection;
@@ -64,6 +66,7 @@ class BookingManager extends BaseManager
     protected $includeVat;
     protected $bundles;
     protected $invoiceBegin;
+    protected $stripe;
     public $minPrice;
     public $maxPerPage;
 
@@ -97,6 +100,7 @@ class BookingManager extends BaseManager
         TwigSwiftMailer $mailer,
         $smser,
         EventDispatcherInterface $dispatcher,
+        StripeClient $stripe,
         $parameters
     ) {
         $this->em = $em;
@@ -105,6 +109,7 @@ class BookingManager extends BaseManager
         $this->mailer = $mailer;
         $this->smser = $smser;
         $this->dispatcher = $dispatcher;
+        $this->stripe = $stripe;
 
         //Parameters
         $parameters = $parameters["parameters"];
@@ -1418,11 +1423,17 @@ class BookingManager extends BaseManager
      */
     public function cancel(Booking $booking)
     {
-        if ($this->canBeCanceledByAsker($booking)) {
+        //if ($this->canBeCanceledByAsker($booking)) {
             $cancelable = false;
 
             if ($booking->getStatus() == Booking::STATUS_PAYED) {
                 $event = new BookingPayinRefundEvent($booking);
+
+                $charge = $booking->getBankStripe();
+
+                $chargeId = $charge->getChargeId();
+
+                $refund = $this->stripe->createRefund($chargeId);
                 $this->dispatcher->dispatch(BookingEvents::BOOKING_REFUND, $event);
 
                 $booking = $event->getBooking();
@@ -1460,7 +1471,7 @@ class BookingManager extends BaseManager
 
                 return $booking;
             }
-        }
+        //}
 
         return false;
     }

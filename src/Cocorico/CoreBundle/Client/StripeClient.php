@@ -44,11 +44,22 @@ class StripeClient
                 'currency' => $this->config['currency'],
                 'customer' => $customer
             ]);
+
+            return $charge->id;
+
         } catch (\Stripe\Error\Base $e) {
             $this->logger->error(sprintf('%s exception encountered when creating a premium payment: "%s"', get_class($e), $e->getMessage()), ['exception' => $e]);
 
             throw $e;
         }
 
+    }
+
+    public function createRefund($charge){
+
+        $refund = \Stripe\Refund::create([
+            'charge' => $charge
+        ]);
+        return $refund;
     }
 }

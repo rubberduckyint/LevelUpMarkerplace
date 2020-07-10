@@ -24,6 +24,10 @@ services:
         class: Cocorico\CoreBundle\Client\StripeClient
         arguments: ['%cocorico.stripe_secret_key%', '%payment%', '@doctrine.orm.entity_manager', '@logger']
 
+    cocorico.booking.stripe.manager:
+        class: Cocorico\CoreBundle\Model\Manager\BookingStripeManager
+        arguments: ['@doctrine.orm.entity_manager']
+
     #Namers
     cocorico.namer.image_namer:
         class:  Cocorico\CoreBundle\Namer\ImageNamer

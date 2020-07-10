@@ -98,6 +98,13 @@ class Booking extends BaseBooking
     private $bankWire;
 
     /**
+     * @ORM\OneToOne(targetEntity="Cocorico\CoreBundle\Entity\BookingStripe", mappedBy="booking", cascade={"remove"}, orphanRemoval=true)
+     *
+     * @var BookingStripe
+     **/
+    private $bankStripe;
+
+    /**
      * @ORM\OneToOne(targetEntity="Cocorico\CoreBundle\Entity\BookingPayinRefund", mappedBy="booking", cascade={"remove"}, orphanRemoval=true)
      *
      * @var BookingPayinRefund
@@ -256,6 +263,22 @@ class Booking extends BaseBooking
     public function setBankWire($bankWire)
     {
         $this->bankWire = $bankWire;
+    }
+
+    /**
+     * @return BookingStripe
+     */
+    public function getBankStripe()
+    {
+        return $this->bankStripe;
+    }
+
+    /**
+     * @param BookingStripe $bankStripe
+     */
+    public function setBankStripe($bankStripe)
+    {
+        $this->bankStripe = $bankStripe;
     }
 
     /**

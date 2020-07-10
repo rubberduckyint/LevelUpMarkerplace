@@ -16,6 +16,8 @@ use Cocorico\CoreBundle\Entity\Listing;
 use Cocorico\CoreBundle\Event\BookingEvent;
 use Cocorico\CoreBundle\Event\BookingEvents;
 use Cocorico\CoreBundle\Form\Type\Frontend\BookingNewType;
+use Cocorico\CoreBundle\Model\Manager\BookingStripeManager;
+use Cocorico\CoreBundle\Model\Manager\BookingManager;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Method;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\ParamConverter;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Route;
@@ -31,6 +33,8 @@ use Symfony\Component\HttpFoundation\Request;
  */
 class BookingController extends Controller
 {
+
+
     /**
      * Creates a new Booking entity.
      *
@@ -58,6 +62,8 @@ class BookingController extends Controller
      *
      * @return \Symfony\Component\HttpFoundation\Response
      */
+
+
     public function newAction(
         Request $request,
         Listing $listing,
@@ -84,7 +90,12 @@ class BookingController extends Controller
                             'success',
                             $this->get('translator')->trans('booking.new.success', array(), 'cocorico_booking')
                         );
-                        $this->get('cocorico.client.stripe')->createCustomerCharge($this->getUser(), $form->get('token')->getData(), $form->get('amount')->getData());
+                        $charge = $this->get('cocorico.client.stripe')->createCustomerCharge($this->getUser(), $form->get('token')->getData(), $form->get('amount')->getData());
+                        if($charge) {
+                            $this->get('cocorico.booking.stripe.manager')->create($booking, $charge);
+                            $payedBooking = $bookingHandler->payBooking($booking);
+
+                        }
 
                         $response = new RedirectResponse(
                             $this->generateUrl(

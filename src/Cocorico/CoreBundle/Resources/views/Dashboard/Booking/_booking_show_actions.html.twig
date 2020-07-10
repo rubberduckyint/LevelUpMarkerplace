@@ -1,12 +1,12 @@
 {% trans_default_domain 'cocorico_booking' %}
 <div class="btns-holder text-center">
     {% if app.user is same as(booking.user) %}
-        {% if canBeCanceledByAsker %}
+        {#{% if canBeCanceledByAsker %}#}
             <a href="{{ path('cocorico_dashboard_booking_edit_asker', {'id': booking.id, 'type': 'cancel'}) }}"
                class="btn btn-default" data-toggle="modal" data-target="#modal">
                 {{ 'booking.show_asker.cancel'|trans }}
             </a>
-        {% endif %}
+        {#{% endif %}#}
 
         {% if booking.status in staticProperty('Cocorico\\CoreBundle\\Entity\\Booking', 'payedStatus') %}
             <a target="_blank" href="{{ path('cocorico_dashboard_booking_show_voucher', {'id': booking.id}) }}"

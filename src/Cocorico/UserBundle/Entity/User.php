@@ -14,6 +14,7 @@ namespace Cocorico\UserBundle\Entity;
 use Cocorico\CoreBundle\Entity\Booking;
 use Cocorico\CoreBundle\Entity\BookingBankWire;
 use Cocorico\CoreBundle\Entity\BookingPayinRefund;
+use Cocorico\CoreBundle\Entity\BookingStripe;
 use Cocorico\CoreBundle\Entity\Listing;
 use Cocorico\MessageBundle\Entity\Message;
 use Cocorico\ReviewBundle\Entity\Review;
@@ -366,6 +367,13 @@ class User extends BaseUser implements ParticipantInterface
      * @ORM\Column(name="stripe_customer_id", type="string", length=255, nullable=true)
      */
     protected $stripeCustomerId;
+
+    /**
+     * @ORM\OneToMany(targetEntity="Cocorico\CoreBundle\Entity\BookingStripe", mappedBy="user", cascade={"persist", "remove"})
+     *
+     * @var BookingStripe
+     **/
+    protected $stripeId;
 
     /**
      * @ORM\OneToMany(targetEntity="Cocorico\MessageBundle\Entity\Message", mappedBy="sender", cascade={"remove"}, orphanRemoval=true)
@@ -1081,6 +1089,22 @@ class User extends BaseUser implements ParticipantInterface
     public function setStripeCustomerId($stripeCustomerId)
     {
         $this->stripeCustomerId = $stripeCustomerId;
+    }
+
+    /**
+     * @return BookingStripe
+     */
+    public function getStripeId()
+    {
+        return $this->stripeId;
+    }
+
+    /**
+     * @param BookingStripe $stripeId
+     */
+    public function setBankStripe($stripeId)
+    {
+        $this->stripeId = $stripeId;
     }
 
     /**

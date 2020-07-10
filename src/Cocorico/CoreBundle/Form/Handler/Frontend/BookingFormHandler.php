@@ -99,6 +99,12 @@ class BookingFormHandler
         return $booking;
     }
 
+    public function payBooking(Booking $booking){
+        $payedBooking = $this->bookingManager->pay($booking);
+
+        return $payedBooking;
+    }
+
     /**
      * Process form
      *

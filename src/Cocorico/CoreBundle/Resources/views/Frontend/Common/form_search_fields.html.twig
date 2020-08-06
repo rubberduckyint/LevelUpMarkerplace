@@ -39,9 +39,8 @@
                 {{ form_rest(form.location) }}
             </div>
         </div>
-
+        {#<!--
         <div class="col time">
-            {#In case of modification don't forget to add fields "start, end AND nb_days" #}
             {{ form_widget(form.date_range) }}
 
             {% if timeUnitFlexibility and form.flexibility is defined %}
@@ -66,7 +65,8 @@
                 {{ form_widget(form.time_range) }}
             {% endif %}
         </div>
+        -->#}
 
-        <input type="submit" value="{{ 'listing.search'|trans }}" class="btn btn-default">
+        <input type="submit" value="{{ 'listing.search'|trans }}" class="btn btn-default listing-btn">
     </div>
 </fieldset>

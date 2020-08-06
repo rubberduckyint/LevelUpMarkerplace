@@ -10,6 +10,8 @@
 {% set listing_location = listing.location %}
 {% set price = listing.priceDecimal | format_price(app.request.locale, 0) %}
 {% set listing_user = listing.user %}
+{% set user_image = listing_user.images|length ? listing_user.images[0].name : UserImageConstants.IMAGE_DEFAULT %}
+
 
 {%- block meta_title -%}
     {{ 'listing.show.meta_title'|trans({}, 'cocorico_meta') ~ " " ~ listing_translation.title ~ " - " ~ listing_location.city ~ " - " ~ listing.priceDecimal ~ " " ~ currencySymbol(currentCurrency) ~ "/" ~  0|add_time_unit_text ~ " - " ~ cocorico_site_name }}
@@ -96,12 +98,6 @@
                                                 {{ 'listing.show.map'|trans }}
                                             </a>
                                         </li>
-                                        <li role="presentation">
-                                            <a href="#calendar" data-toggle="tab"
-                                               data-text="{{ 'listing.show.calendar'|trans }}">
-                                                {{ 'listing.show.calendar'|trans }}
-                                            </a>
-                                        </li>
                                     </ul>
                                     <a href="javascript:void(0)" id="favourite-{{ listing.id }}"
                                        class="link-favourit favourit">
@@ -114,35 +110,36 @@
                                 <div class="tab-content">
                                     <div role="tabpanel" class="tab-pane active" id="photos">
                                         <!-- gallery-slider -->
-                                        <div class="gallery-slider">
-                                            <div class="gallery-slideset">
+                                        <div class="col-md-7">
+                                                <h2>{{ listing_translation.title }}</h2>
+                                        <img class="customer-image" src="{{ (UserImageConstants.IMAGE_FOLDER ~ user_image) | imagine_filter('user_xsmall') }}"
+                                             alt="{{ listing_user.firstName }}"/>
+                                        {% if bundleExist('CocoricoDeliveryBundle') and not app.request.xmlHttpRequest %}
+                                            {% include 'CocoricoDeliveryBundle:Frontend:Listing/_show_delivery.html.twig' with {
+                                                'listing_delivery': listing.delivery
+                                            } only %}
+                                        {% endif %}
+
+                                        <h2 class="listing-name">{{ listing_user.firstName }}</h2>
+                                        <strong class="list-comma">
+                                            Service:
+                                        </strong>
+                                        {%- for listingListingCategory in listing.listingListingCategories -%}
+                                            <span>{{ listingListingCategory.category.translations[app.request.locale].name }}</span>
+                                        {%- endfor -%}
+                                        <br/>
+                                        <strong>Cost: </strong>{{ price }}
+                                        </div>
                                                 {% for image in listing.images %}
                                                     <!-- slide -->
                                                     <div class="slide" {% if loop.index > 1 %} style="display:none;"{% endif %}>
-                                                        <img src="{{ (ListingImageConstants.IMAGE_FOLDER ~ image.name) | imagine_filter('listing_xxlarge') }}"
+                                                        <img width="250px" height="250px" src="{{ (ListingImageConstants.IMAGE_FOLDER ~ image.name) | imagine_filter('listing_xxlarge') }}"
                                                              alt="{{ listing_translation.title ~ " " ~ price }}"/>
                                                     </div>
                                                 {% endfor %}
-                                            </div>
-                                            <!-- vertical-slider -->
-                                            <div class="vertical-holder">
-                                                <div class="vertical-slider">
-                                                    <div class="vertical-slideset">
-                                                        {% for image in listing.images %}
-                                                            <!-- vertical-slide -->
-                                                            <div class="vertical-slide">
-                                                                <a href="">
-                                                                    <img src="{{ (ListingImageConstants.IMAGE_FOLDER ~ image.name) | imagine_filter('listing_xxmedium') }}"
-                                                                         alt="{{ listing_translation.title ~ " " ~ price }}"/>
-                                                                </a>
-                                                            </div>
-                                                        {% endfor %}
-                                                    </div>
-                                                </div>
-                                            </div>
-                                            <a href="#" class="btn-prev">previous</a>
-                                            <a href="#" class="btn-next">next</a>
-                                        </div>
+                                        {#<div style="width: 790px">#}
+                                            {#<iframe width="100%" height="2500" src="https://kumo360.com/frame/analisis-global"></iframe>#}
+                                        {#</div>#}
                                     </div>
 
                                     <div role="tabpanel" class="tab-pane" id="map">
@@ -386,67 +383,7 @@
                                 </a>
                             {%- endif -%}
 
-                            <ul class="info-list">
-                                <li>
-                                    {% if listing_user.phoneVerified %}
-                                        <i class="icon-ok"></i>
-                                        {{ 'form.user.phone:'|trans({}, 'cocorico_user') }}
-                                        <strong>{{ "verified"|trans }}</strong>
-                                    {% else %}
-                                        <i class="icon-cancel"></i>
-                                        {{ 'form.user.phone:'|trans({}, 'cocorico_user') }}
-                                        <strong>{{ "no_verified"|trans }}</strong>
-                                    {% endif %}
-                                    <button title="" data-placement="right" data-toggle="tooltip" class="tooltip-button"
-                                            type="button"
-                                            data-original-title="{{ 'listing.show.phone_verified.help'|trans }}">?
-                                    </button>
-                                </li>
 
-                                <li>
-                                    {{ 'form.user.username:'|trans({}, 'cocorico_user') }}
-                                    {% if listing_user.emailVerified %}
-                                        <i class="icon-ok"></i>
-                                        <strong>{{ "verified"|trans }}</strong>
-                                    {% else %}
-                                        <i class="icon-cancel"></i>
-                                        <strong>{{ "no_verified"|trans }}</strong>
-                                    {% endif %}
-                                    <button title="" data-placement="right" data-toggle="tooltip" class="tooltip-button"
-                                            type="button"
-                                            data-original-title="{{ 'listing.show.email_verified.help'|trans }}">?
-                                    </button>
-                                </li>
-                                <li>
-                                    {{ 'form.user.id_card:'|trans({}, 'cocorico_user') }}
-                                    {% if listing_user.idCardVerified %}
-                                        <i class="icon-ok"></i>
-                                        <strong>{{ "verified"|trans }}</strong>
-                                    {% else %}
-                                        <i class="icon-cancel"></i>
-                                        <strong>{{ "no_verified"|trans }}</strong>
-                                    {% endif %}
-                                    <button title="" data-placement="right" data-toggle="tooltip" class="tooltip-button"
-                                            type="button"
-                                            data-original-title="{{ 'listing.show.id_card_verified.help'|trans }}">?
-                                    </button>
-                                </li>
-                                <li>
-                                    {{ 'form.user.nb_bookings_offerer:'|trans({}, 'cocorico_user') }}
-                                    {% if listing_user.nbBookingsOfferer %}
-                                        <i class="icon-ok"></i>
-                                        <strong>{{ "yes"|trans }}</strong>
-                                    {% else %}
-                                        <i class="icon-cancel"></i>
-                                        <strong>{{ "no"|trans }}</strong>
-                                    {% endif %}
-                                    <button title="" data-placement="right" data-toggle="tooltip" class="tooltip-button"
-                                            type="button"
-                                            data-original-title="{{ 'listing.show.nb_bookings_offerer.help'|trans }}">?
-                                    </button>
-                                </li>
-
-                            </ul>
                         </section>
 
                         {# similar results#}

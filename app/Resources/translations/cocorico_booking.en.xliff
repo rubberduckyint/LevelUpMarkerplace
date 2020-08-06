@@ -310,7 +310,7 @@
       </trans-unit>
       <trans-unit id="3ea7b9c6dd9eb1fa552b8b32f97421f386d40dee" resname="booking.show.address.title">
         <source>booking.show.address.title</source>
-        <target>Listing address</target>
+        <target>Address</target>
       </trans-unit>
       <trans-unit id="4b80d320651163eb0a824b99956518407359066a" resname="booking.show.contact.title">
         <source>booking.show.contact.title</source>
@@ -346,7 +346,7 @@
       </trans-unit>
       <trans-unit id="902bab5ee4151ceab50d9e69635c18d13eac8625" resname="booking.show.start_time:">
         <source>booking.show.start_time:</source>
-        <target>Start time:</target>
+        <target>Apointment time:</target>
       </trans-unit>
       <trans-unit id="c59391c8637532ef23057cbad54259e48d919917" resname="booking.show.status.title">
         <source>booking.show.status.title</source>

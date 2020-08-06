@@ -87,28 +87,12 @@
             </div>
 
             <!-- two-columns -->
-            <div class="twocolumns row">
-                <!-- maparea -->
-                <div class="maparea col-xs-12 col-sm-4">
-                    <div class="maparea">
-                        <div class="checkbox search-on-drag-cb-wrapper">
-                            <input type="checkbox" name="search-on-drag" id="search-on-drag">
-                            <label class="form-label" for="search-on-drag">
-                                {{ 'search-on-map-drag'|trans }}
-                            </label>
-                        </div>
-                        <div class="map-holder">
-                            <div id="map-canvas"></div>
-                            {% include '@CocoricoCore/Frontend/ListingResult/_marker.html.twig'  with {
-                            'markers': markers,
-                            } only %}
-                        </div>
-                    </div>
-                </div>
+            <div>
+
 
                 <!-- postarea -->
-                <section class="listing-area col-xs-12 col-sm-8">
-                    <div class="listing-holder row">
+                <section class="col-xs-12 col-sm-8">
+                    <div>
                         {% include '@CocoricoCore/Frontend/ListingResult/_result_listings.html.twig'  with {
                         'listings': listings,
                         'nb_listings': nb_listings
@@ -119,6 +103,24 @@
                     } only %}
 
                 </section>
+
+                <!-- maparea -->
+                <div class="maparea col-xs-12 col-sm-4">
+                    <div class="sticky-container maparea">
+                        <div class="checkbox search-on-drag-cb-wrapper">
+                            <input type="checkbox" name="search-on-drag" id="search-on-drag">
+                            <label class="form-label" for="search-on-drag">
+                                {{ 'search-on-map-drag'|trans }}
+                            </label>
+                        </div>
+                        <div class="map-holder">
+                            <div id="map-canvas"></div>
+                            {% include '@CocoricoCore/Frontend/ListingResult/_marker.html.twig'  with {
+                                'markers': markers,
+                            } only %}
+                        </div>
+                    </div>
+                </div>
             </div>
 
             {#TO NOT DELETE#}

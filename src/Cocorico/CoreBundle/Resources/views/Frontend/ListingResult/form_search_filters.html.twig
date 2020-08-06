@@ -2,8 +2,8 @@
 
 <div class="sub-holder" id="search-container">
     <!-- range-area -->
+    {#<!--
     <div class="range-area">
-        <!-- range-holder -->
         {{ form_widget(form.price_range) }}
 
         {% if bundleExist('CocoricoDeliveryBundle') %}
@@ -12,8 +12,8 @@
             } only %}
         {% endif %}
     </div>
-
-    <div class="selection-holder">
+-->#}
+    <div class="col search-opt">
         {% include '@CocoricoCore/Frontend/ListingResult/_form_search_characteristics.html.twig' with {
             'characteristics' : form.characteristics
         } only %}
@@ -27,13 +27,14 @@
         </div>
     </div>
 
+
     {% if bundleExist('CocoricoListingCategoryFieldBundle') %}
         {{ render(controller('CocoricoListingCategoryFieldBundle:Frontend/ListingSearchCategoriesFields:categoriesSearchForm')) }}
         {#categories_fields form is already rendred in above controller#}
         {% do form.categories_fields.setRendered() %}
     {% endif %}
 
-    <div class="selection-holder btn-block text-right">
+    <div class="col btn-block text-right search-btn">
         <button type="submit" class="btn btn-default" style="padding: 6px 14px 6px;">
             {{ 'listing.filter'|trans }}
         </button>

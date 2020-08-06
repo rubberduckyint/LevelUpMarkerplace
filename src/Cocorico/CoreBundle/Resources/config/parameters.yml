@@ -3,8 +3,8 @@ parameters:
     #Site general info
     cocorico.site_name: My Fair Md
     cocorico.phone: 
-    cocorico.address: 8055 W. Manchester ave #460 Playa del Rey CA 90293
-    cocorico.short_description: '8055 W. Manchester ave #460 Playa del Rey CA 90293'
+    cocorico.address: '321 W Grand Ave. El Segundo CA 90245'
+    cocorico.short_description: '321 W Grand Ave. El Segundo CA 90245'
     cocorico.contact_mail: info@myfairmd.com
     #To obfuscate see http://wbwip.com/wbw/emailencoder.html
     cocorico.contact_mail_obfuscated: "&#099;&#111;&#110;&#116;&#097;&#099;&#116;&#064;&#099;&#111;&#099;&#111;&#114;&#105;&#099;&#111;&#046;&#105;&#111;"

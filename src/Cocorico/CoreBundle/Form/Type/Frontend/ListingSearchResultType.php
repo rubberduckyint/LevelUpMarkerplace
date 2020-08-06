@@ -112,37 +112,37 @@ class ListingSearchResultType extends AbstractType
             );
 
         //DATE RANGE
-        $dateRange = $listingSearchRequest->getDateRange();
-        $builder
-            ->add(
-                'date_range',
-                DateRangeType::class,
-                array(
-                    'start_options' => array(
-                        'label' => 'listing_search.form.start',
-                        'data' => $dateRange && $dateRange->getStart() ? $dateRange->getStart() : null
-                    ),
-                    'end_options' => array(
-                        'label' => 'listing_search.form.end',
-                        'data' => $dateRange && $dateRange->getEnd() ? $dateRange->getEnd() : null
-                    ),
-                    'allow_single_day' => $this->allowSingleDay,
-                    'end_day_included' => $this->endDayIncluded,
-                    'required' => false,
-                    /** @Ignore */
-                    'label' => false,
-                    'block_name' => 'date_range',
-                    'display_mode' => $this->daysDisplayMode,
-                )
-            )
-            ->add(
-                'price_range',
-                PriceRangeType::class,
-                array(
-                    /** @Ignore */
-                    'label' => false
-                )
-            );
+//        $dateRange = $listingSearchRequest->getDateRange();
+//        $builder
+//            ->add(
+//                'date_range',
+//                DateRangeType::class,
+//                array(
+//                    'start_options' => array(
+//                        'label' => 'listing_search.form.start',
+//                        'data' => $dateRange && $dateRange->getStart() ? $dateRange->getStart() : null
+//                    ),
+//                    'end_options' => array(
+//                        'label' => 'listing_search.form.end',
+//                        'data' => $dateRange && $dateRange->getEnd() ? $dateRange->getEnd() : null
+//                    ),
+//                    'allow_single_day' => $this->allowSingleDay,
+//                    'end_day_included' => $this->endDayIncluded,
+//                    'required' => false,
+//                    /** @Ignore */
+//                    'label' => false,
+//                    'block_name' => 'date_range',
+//                    'display_mode' => $this->daysDisplayMode,
+//                )
+//            )
+//            ->add(
+//                'price_range',
+//                PriceRangeType::class,
+//                array(
+//                    /** @Ignore */
+//                    'label' => false
+//                )
+//            );
 
         //CHARACTERISTICS
         $characteristics = $listingSearchRequest->getCharacteristics();
@@ -152,6 +152,7 @@ class ListingSearchResultType extends AbstractType
                 ListingCharacteristicType::class,
                 array(
                     'mapped' => false,
+                    'label' => false,
                     'data' => $characteristics
                 )
             )
@@ -169,66 +170,66 @@ class ListingSearchResultType extends AbstractType
             );
 
         //If time unit is not day then we add time in search engine
-        if (!$this->timeUnitIsDay) {
-            $timeRange = $listingSearchRequest->getTimeRange();
-
-            $builder->add(
-                'time_range',
-                TimeRangeType::class,
-                array(
-                    'start_options' => array(
-                        'label' => 'listing_search.form.start_time',
-                        'data' => $timeRange && $timeRange->getStart() ? $timeRange->getStart() : null
-                    ),
-                    'end_options' => array(
-                        'label' => 'listing_search.form.end_time',
-                        'data' => $timeRange && $timeRange->getEnd() ? $timeRange->getEnd() : null
-                    ),
-                    'required' => false,
-                    /** @Ignore */
-                    'label' => false,
-                    'block_name' => 'time_range',
-                    'display_mode' => $this->timesDisplayMode
-                )
-            );
-        }
+//        if (!$this->timeUnitIsDay) {
+//            $timeRange = $listingSearchRequest->getTimeRange();
+//
+//            $builder->add(
+//                'time_range',
+//                TimeRangeType::class,
+//                array(
+//                    'start_options' => array(
+//                        'label' => 'listing_search.form.start_time',
+//                        'data' => $timeRange && $timeRange->getStart() ? $timeRange->getStart() : null
+//                    ),
+//                    'end_options' => array(
+//                        'label' => 'listing_search.form.end_time',
+//                        'data' => $timeRange && $timeRange->getEnd() ? $timeRange->getEnd() : null
+//                    ),
+//                    'required' => false,
+//                    /** @Ignore */
+//                    'label' => false,
+//                    'block_name' => 'time_range',
+//                    'display_mode' => $this->timesDisplayMode
+//                )
+//            );
+//        }
 
         //If there is time flexibility
-        if ($this->timeUnitFlexibility) {
-            $builder->add(
-                'flexibility',
-                ChoiceType::class,
-                array(
-                    'label' => 'listing_search.form.flexibility',
-                    'placeholder' => 'listing_search.form.flexibility',
-                    'choices' => array_combine(
-                        range(1, $this->timeUnitFlexibility),
-                        range(1, $this->timeUnitFlexibility)
-                    ),
-                    'required' => false,
-                )
-            );
-        }
+//        if ($this->timeUnitFlexibility) {
+//            $builder->add(
+//                'flexibility',
+//                ChoiceType::class,
+//                array(
+//                    'label' => 'listing_search.form.flexibility',
+//                    'placeholder' => 'listing_search.form.flexibility',
+//                    'choices' => array_combine(
+//                        range(1, $this->timeUnitFlexibility),
+//                        range(1, $this->timeUnitFlexibility)
+//                    ),
+//                    'required' => false,
+//                )
+//            );
+//        }
 
         //Sync date and time
-        $builder->addEventListener(
-            FormEvents::SUBMIT,
-            function (FormEvent $event) {
-                /** @var ListingSearchRequest $searchRequest */
-                $searchRequest = $event->getData();
-                $form = $event->getForm();
-                /** @var DateRange $dateRange */
-                $dateRange = $form->get('date_range')->getData();
-                $searchRequest->setDateRange($dateRange);
-
-                if (!$this->timeUnitIsDay) {
-                    /** @var TimeRange $timeRange */
-                    $timeRange = $form->get('time_range')->getData();
-                    $searchRequest->setTimeRange($timeRange);
-                }
-                $event->setData($searchRequest);
-            }
-        );
+//        $builder->addEventListener(
+//            FormEvents::SUBMIT,
+//            function (FormEvent $event) {
+//                /** @var ListingSearchRequest $searchRequest */
+//                $searchRequest = $event->getData();
+//                $form = $event->getForm();
+//                /** @var DateRange $dateRange */
+//                $dateRange = $form->get('date_range')->getData();
+//                $searchRequest->setDateRange($dateRange);
+//
+//                if (!$this->timeUnitIsDay) {
+//                    /** @var TimeRange $timeRange */
+//                    $timeRange = $form->get('time_range')->getData();
+//                    $searchRequest->setTimeRange($timeRange);
+//                }
+//                $event->setData($searchRequest);
+//            }
+//        );
 
         //Dispatch LISTING_SEARCH_RESULT_FORM_BUILD Event. Listener listening this event can add fields and validation
         //Used for example to add fields to listing search form

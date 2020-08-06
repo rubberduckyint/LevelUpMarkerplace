@@ -185,5 +185,3 @@ abstract class BaseBookingStripe
     }
 
 }
-
-

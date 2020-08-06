@@ -170,6 +170,7 @@ function syncTimeFields(parentTimesElt) {
 function initDatePickerAjax(callbackSuccess, parentDatesElt) {
     parentDatesElt = (typeof parentDatesElt === 'undefined') ? '' : parentDatesElt + ' ';
     var today = new Date();
+    $(parentDatesElt + '.timepicker-holder-ajax').find('.col:nth-child(2)').hide();
 
     $(parentDatesElt + '.datepicker-holder-ajax').each(function () {
         var holder = $(this);
@@ -246,6 +247,10 @@ function initDatePickerAjax(callbackSuccess, parentDatesElt) {
             });
         });
     });
+
+    // $(parentDatesElt + '.timepicker-holder-ajax').find('.title')[1].hide();
+    // $(parentDatesElt + '.timepicker-holder-ajax').find('.title')[1].hide();
+
 
 }
 

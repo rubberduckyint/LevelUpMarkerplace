@@ -29,7 +29,8 @@
             <br/>
             <strong>{{ 'booking.voucher.phone' | trans }} :</strong> {{ offerer.phone }}
         </div>
-
+        {#
+<!--
         {% if addressDelivery %}
             <div>
                 <br/>
@@ -38,6 +39,8 @@
                 } only %}
             </div>
         {% endif %}
+        -->
+        #}
         <div>
             <br/>
             <strong>{{ 'booking.voucher.date' | trans }} : </strong>
@@ -48,9 +51,14 @@
                 <br/>
                 <strong>{{ 'booking.show.start_time:'|trans }} </strong>
                 {{ booking.startTime|date('H:i') }}
+
+                {#
+                <!--
                 <br/>
                 <strong>{{ 'booking.show.end_time:'|trans }}</strong>
                 {{ booking.endTime|date('H:i') }}
+                -->
+                #}
             {% endif %}
 
             <br/>

@@ -12,9 +12,9 @@
                         <strong class="title">{{ 'footer.contact_us.title'|trans }}</strong>
                         <ul class="list-unstyled">
                             <li>
-                                <address><i class="icon-location"></i>{{ cocorico_address }}</address>
+                              <a href="https://www.google.com/maps/place/321+W+Grand+Ave,+El+Segundo,+CA+90245/@33.9190622,-118.4214528,17z/data=!3m1!4b1!4m5!3m4!1s0x80c2b16baaa95f23:0x4950195b3dc88e6c!8m2!3d33.9190622!4d-118.4192641">  <address><i class="icon-location"></i>{{ cocorico_address }}</address></a>
                             </li>
-                            <li>
+                          <!---  <li>
                                 <a href="tel:{{ cocorico_phone|replace({'(0)': '', ' ': ''}) }}">
                                     <i class="icon-phone"></i>{{ cocorico_phone }}
                                 </a>
@@ -24,7 +24,7 @@
                                     <i class="icon-mail-alt"></i>
                                     {{ cocorico_contact_mail_obfuscated|raw }}
                                 </a>
-                            </li>
+                            </li>-->
                         </ul>
                     </div>
                     <!-- navarea -->
@@ -80,11 +80,6 @@
                     {{ 'footer.legal_notices.link'|trans }}
                 </a>
 
-                <a href="http://www.cocolabs.io/fr/"
-                   class="by pull-right credit" target="_blank">
-                    <img src="{{ asset('images/marketplace-solutions.png') }}" width="45" height="15"
-                         alt="creation marketplace">
-                </a>
 
                 <p>
                     &copy; {{ "now"|date("Y") }} {{ 'footer.all_right_reserved'|trans }}

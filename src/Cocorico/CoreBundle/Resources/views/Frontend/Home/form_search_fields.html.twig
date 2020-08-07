@@ -12,17 +12,13 @@
     <div class="row">
         <div class="col-xs-12">
             <div class="area">
-                <div class="col-md-5 formcell pull-left">
-                    <strong class="title">
-                       {{ form_label(form.categories) }}
-                    </strong>
-
+                <div class="col-md-4 formcell pull-left">
                     <div class="multiselect">
                         {{ form_widget(form.categories) }}
                     </div>
                 </div>
 
-                <div class="col-md-5 pull-left formcell">
+                <div class="col-md-6 pull-left formcell">
                     <strong class="title">
                         {{ form_label(form.location.address, null, {
                             'required': false

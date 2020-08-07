@@ -266,7 +266,7 @@
 
                 <!-- contain sidebar of the page -->
                 <aside id="sidebar" class="col-xs-12 col-md-3">
-                    <div class="holder">
+                    <div class="holder sticky-container">
                         <div class="sub-head">
                             <!-- social-networks -->
                             {#{{ socialButtons({'title': translation.title}) }}#}
@@ -391,7 +391,9 @@
                         { 'id': listing.id }
                         )) }}
 
+
                     </div>
+                    <div style="height: 250px"></div>
                 </aside>
             </div>
         {% endblock %}

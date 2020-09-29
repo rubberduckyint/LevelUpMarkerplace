@@ -49,6 +49,8 @@
         {% endblock %}
 
         {% block main %}
+<div class="innerContainer center-block">
+<row>
             {#search form with filters#}
             {% include 'CocoricoCoreBundle:Frontend/Common:_flash.html.twig' %}
 
@@ -92,7 +94,7 @@
 
                 <!-- postarea -->
                 <section class="col-xs-12 col-sm-8">
-                    <div>
+                    <div class="listing-holder row">
                         {% include '@CocoricoCore/Frontend/ListingResult/_result_listings.html.twig'  with {
                         'listings': listings,
                         'nb_listings': nb_listings
@@ -125,7 +127,8 @@
                 </div>
 
             </div>
-
+</row>
+</div>
             {#TO NOT DELETE#}
             <div data-id="seo-desc-moved"></div>
         {% endblock %}

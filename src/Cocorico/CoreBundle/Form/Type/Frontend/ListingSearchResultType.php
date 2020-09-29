@@ -30,6 +30,7 @@ use Symfony\Component\EventDispatcher\EventDispatcherInterface;
 use Symfony\Component\Form\AbstractType;
 use Symfony\Component\Form\Extension\Core\Type\ChoiceType;
 use Symfony\Component\Form\Extension\Core\Type\HiddenType;
+use Symfony\Component\Form\Extension\Core\Type\TextType;
 use Symfony\Component\Form\FormBuilderInterface;
 use Symfony\Component\Form\FormEvent;
 use Symfony\Component\Form\FormEvents;
@@ -108,6 +109,16 @@ class ListingSearchResultType extends AbstractType
                     'block_name' => 'listing_categories',
                     'multiple' => true,
                     'placeholder' => 'listing_search.form.categories.empty_value',
+                )
+            );
+
+        $builder
+            ->add(
+                'title',
+                TextType::class,
+                array(
+                    'label' => 'Search',
+                    'mapped' => false
                 )
             );
 

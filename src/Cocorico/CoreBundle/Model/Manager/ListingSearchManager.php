@@ -96,12 +96,17 @@ class ListingSearchManager
         }
 
         //Categories
+
         $categories = $listingSearchRequest->getCategories();
         if (count($categories)) {
             $queryBuilder
                 ->andWhere("llcat.category IN (:categories)")
                 ->setParameter("categories", $categories);
         }
+
+        //Title
+
+        $queryBuilder = $this->getSearchByTitleQueryBuilder($listingSearchRequest, $queryBuilder);
 
         //Characteristics
         $queryBuilder = $this->getSearchByCharacteristicsQueryBuilder($listingSearchRequest, $queryBuilder);
@@ -165,6 +170,24 @@ class ListingSearchManager
             ->setParameter('swLat', $viewport["sw"]["lat"])
             ->setParameter('neLng', $viewport["ne"]["lng"])
             ->setParameter('swLng', $viewport["sw"]["lng"]);
+
+        return $queryBuilder;
+    }
+
+    /**
+     * @param ListingSearchRequest       $listingSearchRequest
+     * @param \Doctrine\ORM\QueryBuilder $queryBuilder
+     * @return \Doctrine\ORM\QueryBuilder
+     */
+    private function getSearchByTitleQueryBuilder(ListingSearchRequest $listingSearchRequest, $queryBuilder)
+    {
+        $title = $listingSearchRequest->getTitle();
+        if($title != "") {
+            $queryBuilder
+                ->leftJoin('l.translations', 'llt')
+                ->andWhere('llt.title LIKE :title')
+                ->setParameter('title', '%'.$title.'%');
+        }
 
         return $queryBuilder;
     }

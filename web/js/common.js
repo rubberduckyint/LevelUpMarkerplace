@@ -1,4 +1,29 @@
 var DEBUG = true;
+ $('#carousel').carouFredSel();
+
+    // Using custom configuration
+    $('#carousel').carouFredSel({
+        items     : 2,
+	circular: true,    
+        infinite: true,   
+        width: null,       
+        height: null,      
+        align: "center",   
+        padding: null,     
+        synchronise: null, 
+        cookie: false,     
+        onCreate: null,
+        direction : "up",
+        scroll : {
+            items         : 1,
+            easing        : "elastic",
+            duration      : 1000,
+            pauseOnHover  : true
+        }
+    });
+
+
+
 
 function console_log() {
     if (DEBUG) {

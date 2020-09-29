@@ -56,9 +56,9 @@ a:focus {
 }
 
 a:focus {
-    outline: thin dotted;
+/*    outline: thin dotted;
     outline: 5px auto -webkit-focus-ring-color;
-    outline-offset: -2px;
+    outline-offset: -2px;*/
 }
 
 figure {
@@ -579,18 +579,27 @@ pre code {
 
 @media (min-width: 768px) {
     .container {
+      /*  width: 740px;*/
+    }
+    .innerContainer {
         width: 740px;
     }
 }
 
 @media (min-width: 992px) {
     .container {
+        /*width: 960px;*/
+    }
+    .innerContainer {
         width: 960px;
     }
 }
 
 @media (min-width: 1200px) {
     .container {
+       /* width: 1200px;*/
+    }
+    .innerContainer {
         width: 1200px;
     }
 }
@@ -600,7 +609,8 @@ pre code {
     margin-left: auto;
     padding-left: 10px;
     padding-right: 10px;
-    padding-top: 200px;
+    padding-top: 160px;
+    padding-bottom: 100px;
 }
 
 .row {
@@ -3723,7 +3733,9 @@ input[type="button"].btn-block {
 }
 
 .breadcrumb {
-    padding: 0 0;
+/*dave edit*/
+	display:none;
+    	padding: 0 0;
     margin-bottom: 20px;
     list-style: none;
     background-color: transparent;
@@ -5173,7 +5185,7 @@ span.btn:focus {
 
 /* header styles */
 #header {
-    margin: 0 0 20px;
+/*    margin: 0 0 20px;*/
     padding: 0 0 21px;
     border-bottom: #dfe3e6 solid 1px;
 }
@@ -5476,7 +5488,7 @@ span.btn:focus {
 }
 
 .form-category input.btn-default {
-    width: 178px;
+    width: 125px;
     font-weight: 400;
     padding: 7px 10px;
     position: relative;
@@ -6072,6 +6084,8 @@ span.btn:focus {
 
 /* breadcrumbs */
 .breadcrumb {
+	/*dave edit*/
+	display:none;
     margin: 0 0 19px;
 }
 
@@ -6165,7 +6179,7 @@ span.btn:focus {
 
 .listing-post .post-info {
     overflow: hidden;
-    min-height: 200px;
+/*dave edit    min-height: 200px;*/
     position: relative;
 }
 
@@ -6203,13 +6217,14 @@ span.btn:focus {
     right: 0;
     bottom: 0;
     overflow: hidden;
-    position: absolute;
+/*DAVE    position: absolute;*/
+    margin-top: 15px;
 }
 
 .listing-post .time-price {
     float: left;
     width: 70px;
-    color: #58595b;
+    color: #0f5ea6;
     line-height: 1.241;
     margin: 15px 10px 0 16px;
 }
@@ -6379,7 +6394,7 @@ span.btn:focus {
 }
 
 .listing-post.small .post-info {
-    min-height: 150px;
+    min-height: 200px;
 }
 
 .listing-post.small .foot {
@@ -6643,7 +6658,9 @@ span.btn:focus {
 }
 
 #sidebar .sub-head .counter {
-    color: #58595b;
+/*dave edit*/
+	display:none;
+    	color: #58595b;
     display: inline-block;
     position: relative;
     top: 9px;
@@ -8612,6 +8629,8 @@ label {
 }
 
 .tabset-holder .link-favourit {
+/*dave edit*/
+	display:none;
     float: right;
     color: #58595b;
     margin: -43px 0 0;
@@ -13866,8 +13885,8 @@ h1.listing-title a {
     background-image: -moz-linear-gradient(top, #f9f9f9 0%, #ebebeb 100%);
     background-image: linear-gradient(to bottom, #f9f9f9 0%, #ebebeb 100%);
     background-repeat: repeat-x;
-    filter: progid:DXImageTransform.Microsoft.gradient(startColorstr='#{ie-hex-str(@start-color)}', endColorstr='#{ie-hex-str(@end-color)}', GradientType=0);
-    filter: none;
+    /* dave filter: progid:DXImageTransform.Microsoft.gradient(startColorstr='#{ie-hex-str(@start-color)}', endColorstr='#{ie-hex-str(@end-color)}', GradientType=0);
+  */  filter: none;
 }
 
 .jcf-checkbox span {
@@ -17526,7 +17545,7 @@ body.loading {
 
 .search-opt{
     width: 25%!important;
-    margin-left: 60%;
+   /*dave edit  margin-left: 60%;*/
 }
 
 .search-btn{
@@ -17555,4 +17574,73 @@ body.loading {
 }
 .homeSlider h2{
      color:#fff;
+     font-size:65px;
+     text-shadow: 2px 2px 2px rgba(0, 0, 0, 1);
+}
+* {
+  box-sizing: border-box;
+}
+
+.homeCardsRow{
+margin-top: -25px;
+margin-left: 10%;
+    margin-right: 10%;
+}
+/* Float four columns side by side */
+.homeCardcolumn {
+  float: left;
+  width: 33%;
+  padding: 0 10px;
+}
+
+
+/* Clear floats after the columns */
+.homeCardsRow:after {
+  content: "";
+  display: table;
+  clear: both;
+}
+
+/* Responsive columns */
+@media screen and (max-width: 600px) {
+  .homeCardcolumn {
+    width: 100%;
+    display: block;
+    margin-bottom: 20px;
+  }
+}
+
+/* Style the counter cards */
+.homeCard {
+  box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2);
+  padding: 16px;
+  text-align: center;
+  background-color: #f1f1f1;
+}
+@media screen and (min-width: 768px)
+.container .jumbotron, .container-fluid .jumbotron {
+    padding-right: 60px;
+    padding-left: 60px;
+}
+.container .jumbotron, .container-fluid .jumbotron {
+    padding-right: 15px;
+    padding-left: 15px;
+    border-radius: 6px;
+}
+.jumbotron {
+    text-align: center;
+    background-color: transparent;
+}
+@media screen and (min-width: 768px)
+.jumbotron {
+    padding-top: 48px;
+    padding-bottom: 48px;
+}
+.jumbotron {
+    padding-top: 30px;
+    padding-bottom: 30px;
+    margin-bottom: 30px;
+    margin-top: 50px;
+    color: inherit;
+    background-color: #eee;
 }

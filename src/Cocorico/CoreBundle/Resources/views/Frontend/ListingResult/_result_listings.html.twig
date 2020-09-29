@@ -11,14 +11,21 @@
     {% set user_image = listing_user.images|length ? listing_user.images[0].name : UserImageConstants.IMAGE_DEFAULT %}
 
     <article class="listing-post" data-lid="{{ listing.id }}">
-        <a href="javascript:void(0)" id="favourite-{{ listing.id }}" class="favourit">
-            <i class="icon-heart"></i>
-            <span class="hidden">favourit</span>
-        </a>
         <a href="{{ path('cocorico_listing_show', { 'slug': listing_translation.slug }) }}">
-
             <div class="frame">
+<div class="post-info">
+<div class="col-sm-4 col-xs-8">
+<img class="customer-image" src="{{ (UserImageConstants.IMAGE_FOLDER ~ user_image) | imagine_filter('user_medium') }}"
+                                     alt="{{ listing_user.firstName }}"/>
+</div>
+<div class="col-sm-8 col-xs-8">
+<div class="pull-right " style="padding-right:10px; padding-top:10px;">
+<!--change user name to company name--->
 
+                                <h2>{{ listing_user.firstName }}</h2>
+</div>
+</div>
+</div>
                 <div class="post-info">
                     <div class="img-holder col-sm-4 col-xs-8">
                         <img src="{{ (ListingImageConstants.IMAGE_FOLDER ~  listing_image) | imagine_filter('listing_large') }}"
@@ -26,7 +33,7 @@
                     </div>
 
                     <div class="col-sm-8 col-xs-16" style="color: black">
-                        <div class="col-sm-8 col-xs-16">
+                        <div class="col-sm-12 col-xs-16">
                             <h2 class="listing-name">{{ listing_translation.title }}</h2>
                             <div class="area">
                                 <div class="rating-block">
@@ -50,30 +57,6 @@
                             <br/>
                             <strong>Cost: </strong>{{ price }}
                             <p>{{ listing_translation.description }}</p>
-                        </div>
-                        <div class="post-content col-sm-4 col-xs-8">
-                            <div class="alignleft">
-                                <img class="customer-image" src="{{ (UserImageConstants.IMAGE_FOLDER ~ user_image) | imagine_filter('user_xsmall') }}"
-                                     alt="{{ listing_user.firstName }}"/>
-                                {% if bundleExist('CocoricoDeliveryBundle') and not app.request.xmlHttpRequest %}
-                                    {% include 'CocoricoDeliveryBundle:Frontend:Listing/_show_delivery.html.twig' with {
-                                        'listing_delivery': listing.delivery
-                                    } only %}
-                                {% endif %}
-
-                                <h2>{{ listing_user.firstName }}</h2>
-                            </div>
-                            <div class="textbox">
-
-
-                                {#<!--Debug:#}
-                                {#accuracy : {{ listingTmp.accuracy|default(-1) }}<br/>#}
-                                {#distance : {{ listingTmp.distance|default(-1) }}<br/>#}
-                                {#distance_range : {{ listingTmp.distance_range|default(-1) }}<br/>#}
-                                {#platformNotation : {{ listing.platformNotation|default(-1) }}<br/>#}
-                                {#reallyAvailable : {{ listingTmp.really_available|default(-1) }}<br/>#}
-                                {#-->#}
-                            </div>
                         </div>
                     </div>
                     <br />

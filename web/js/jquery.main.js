@@ -477,6 +477,8 @@ function initCarousel() {
         animSpeed: 500,
         step: 1
     });
+
+
 }
 
 // fade galleries init

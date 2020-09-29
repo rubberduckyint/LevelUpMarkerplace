@@ -6,6 +6,8 @@
         {% trans_default_domain 'cocorico_user' %}
 
         {% block main %}
+<div class="innerContainer center-block">
+<row>
             <div class="col-xs-12">
                 {% include 'CocoricoCoreBundle:Frontend/Common:_flash.html.twig' %}
                 <div id="form-registerlogin" class="form-signup validate-form">
@@ -24,6 +26,8 @@
                     </form>
                 </div>
             </div>
+</row>
+</div>
         {% endblock %}
 
     {% endembed %}

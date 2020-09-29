@@ -23,7 +23,8 @@
     <ul class="list-inline timing">
         <li>
             {{ form_errors(form.date_range.start) }}
-            {{ form_label(form.date_range.start, null, {'required': false}) }}
+<labe>Requested appointment Date</label><!-- 
+            {{ form_label(form.date_range.start, null, {'required': false}) }}-->
             <time>
                 <i class="icon-calendar"></i>
                 {{ booking.start|localizeddate('short', 'none', 'fr', user_timezone) }}
@@ -32,7 +33,7 @@
                 'type': 'hidden'
             }) }}
         </li>
-        <li>
+<!--        <li>
             {{ form_errors(form.date_range.end) }}
             {{ form_label(form.date_range.end, null, {'required': false}) }}
             <time>
@@ -46,11 +47,12 @@
         <li>
             {{ 'booking.duration:'|trans }} <strong>{{ booking_duration|add_time_unit_text }}</strong>
         </li>
-
+-->
         {% if not timeUnitIsDay %}
             <li>
                 {{ form_errors(form.time_range.start) }}
-                {{ form_label(form.time_range.start, null, {'required': false}) }}
+  <!--              {{ form_label(form.time_range.start, null, {'required': false}) }}-->
+<label>Time</label>
                 <time>
                     <i class="icon-time"></i>
                     {{ booking.startTime|localizeddate('none', 'short', 'fr', user_timezone) }}
@@ -60,7 +62,7 @@
                     {{ form_widget(form.time_range.start_picker) }}
                 </div>
             </li>
-            <li>
+           <!-- <li>
                 {{ form_errors(form.time_range.end) }}
                 {{ form_label(form.time_range.end, null, {'required': false}) }}
                 <time>
@@ -71,13 +73,13 @@
                     {{ form_widget(form.time_range.end) }}
                     {{ form_widget(form.time_range.end_picker) }}
                 </div>
-            </li>
+            </li>-->
         {% endif %}
 
         {% if not timeUnitIsDay %}
-            <li class="pull-right">
+          <!--  <li class="pull-right">
                 {{ 'form.time_zone'|trans({}, 'cocorico_user') }}: <strong>{{ user_timezone|timezone_name }}</strong>
-            </li>
+            </li>-->
         {% endif %}
     </ul>
 </div>

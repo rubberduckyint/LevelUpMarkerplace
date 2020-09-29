@@ -10,15 +10,15 @@
         {% endif %}
     </div>
     <div class="row">
-        <div class="col-xs-12">
-            <div class="area">
-                <div class="col-md-4 formcell pull-left">
+        <div class="col">
+            <div class="area" style="margin-left:20px; width: 100%; max-width: 100%">
+                <div class="col formcell pull-left">
                     <div class="multiselect">
                         {{ form_widget(form.categories) }}
                     </div>
                 </div>
 
-                <div class="col-md-6 pull-left formcell">
+                <div class="col pull-left formcell">
                     <strong class="title">
                         {{ form_label(form.location.address, null, {
                             'required': false
@@ -37,7 +37,18 @@
                         {{ form_rest(form.location) }}
                     </div>
                 </div>
-		<div class="col-md-2 formcell pull-right">
+                <div class="col pull-left formcell">
+                    <strong class="title"><label for="title">Search</label></strong>
+                    <div class="field-holder">
+                        {{ form_widget(form.title, {
+                            'attr': {
+                                'class': 'form-control'
+                            }
+                        })
+                        }}
+                    </div>
+                </div>
+		<div class="col formcell pull-right">
                 	<input type="submit" value="{{ 'listing.search'|trans }}" class="btn btn-default">
 		</div>
             </div>

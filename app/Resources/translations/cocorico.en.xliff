@@ -296,6 +296,18 @@
         <source>nav.who_we_are.slug</source>
         <target>who-we-are</target>
       </trans-unit>
+
+      <trans-unit id="ae075cd0545e4ced4f09a93784ae2fc0dfc5e6cf" resname="nav.service_providers.link">
+        <source>nav.service_providers.link</source>
+        <target>Providers</target>
+      </trans-unit>
+      <trans-unit id="25752f0500683a8055d9b148a43277a0977e61ce" resname="nav.service_providers.slug">
+        <source>nav.service-providers.slug</source>
+        <target>service-providers</target>
+      </trans-unit>
+
+
+
       <trans-unit id="2a004ec467e55618ba224e27867bcb893ae731bc" resname="page.error">
         <source>page.error</source>
         <target>Error</target>

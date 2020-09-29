@@ -67,6 +67,18 @@
         </div>
         -->#}
 
+ <div class="col location">
+     <strong class="title"><label for="title">Title</label></strong>
+     <div class="field-holder">
+        {{ form_widget(form.title, {
+    'attr': {
+        'class': 'form-control'
+            }
+             })
+        }}
+     </div>
+        </div>
+
         <input type="submit" value="{{ 'listing.search'|trans }}" class="btn btn-default listing-btn">
     </div>
 </fieldset>

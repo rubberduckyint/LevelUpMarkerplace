@@ -2,7 +2,7 @@
 
 <!-- header of the page -->
 <header id="header">
-    <div class="container">
+    <div class="innerContainer center-block">
         <div class="row">
             <div class="col-xs-12">
                 <!-- main navigation of the page -->
@@ -24,15 +24,20 @@
                     <!-- Collect the nav links, forms, and other content for toggling -->
                     <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
                         <ul class="nav navbar-nav">
+                             <li>
+                                <a href="{{ path('cocorico_page_show', { 'slug': 'nav.service_providers.slug'|trans }) }}"
+                                   tabindex="4">{{ 'nav.service_providers.link'|trans }}
+                                </a>
+                            </li>
                             <li>
                                 <a href="{{ path('cocorico_page_show', { 'slug': 'nav.who_we_are.slug'|trans }) }}"
-                                   tabindex="4">{{ 'nav.who_we_are.link'|trans }}
+                                   tabindex="5">{{ 'nav.who_we_are.link'|trans }}
                                 </a>
                             </li>
                             <!-- commented by dave
 			    <li>
                                 <a href="{{ path('cocorico_listing_favourite') }}"
-                                   tabindex="5">{{ 'nav.favorites.link'|trans }}
+                                   tabindex="6">{{ 'nav.favorites.link'|trans }}
                                     <span id="fav-count"></span>
                                 </a>
                             </li>
@@ -51,12 +56,12 @@
                                 </li>
                             {%- else -%}
                                 <li>
-                                    <a href="{{ path('cocorico_user_register') }}" tabindex="6">
+                                    <a href="{{ path('cocorico_user_register') }}" tabindex="7">
                                         {{ 'nav.register.link'|trans }}
                                     </a>
                                 </li>
                                 <li>
-                                    <a href="{{ path('cocorico_user_login') }}" tabindex="7">
+                                    <a href="{{ path('cocorico_user_login') }}" tabindex="8">
                                         {{ 'nav.login.link'|trans }}
                                     </a>
                                 </li>

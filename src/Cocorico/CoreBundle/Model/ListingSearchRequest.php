@@ -30,6 +30,7 @@ class ListingSearchRequest implements TranslationContainerInterface
     protected $location;
     protected $categories;
     protected $characteristics;
+    protected $title;
     /** @var  DateRange */
     protected $dateRange;
     /** @var  TimeRange */
@@ -93,6 +94,8 @@ class ListingSearchRequest implements TranslationContainerInterface
             $this->categories = $categories;
         }
 
+        $this->title = $this->request->query->get("title");
+
         //Categories fields
         $this->categoriesFields = array();
         $categoriesFields = $this->request->query->get("categories_fields");
@@ -144,6 +147,22 @@ class ListingSearchRequest implements TranslationContainerInterface
     public function setCategories($categories)
     {
         $this->categories = $categories;
+    }
+
+    /**
+     * @return mixed
+     */
+    public function getTitle()
+    {
+        return $this->title;
+    }
+
+    /**
+     * @param mixed $title
+     */
+    public function setTitle($title)
+    {
+        $this->title = $title;
     }
 
     /**

@@ -17,7 +17,8 @@
     {% embed '@CocoricoCore/Frontend/layout.html.twig' %}
 
         {% block main %}
-
+<div class="innerContainer center-block">
+<row>
             {% include 'CocoricoCoreBundle:Frontend/Common:_flash.html.twig' only %}
 
             <div id="form-contact" class="form-contact validate-form">
@@ -35,7 +36,8 @@
 
                 {{ form_end(form) }}
             </div>
-
+</row>
+</div>
         {% endblock %}
 
     {% endembed %}

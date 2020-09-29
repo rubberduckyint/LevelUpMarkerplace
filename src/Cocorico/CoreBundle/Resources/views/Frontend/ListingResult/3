@@ -1,0 +1,76 @@
+{% trans_default_domain 'cocorico_listing' %}
+
+<!-- post -->
+{%- for listingTmp in listings -%}
+    {% set listing = listingTmp[0] %}
+    {% set listing_translation = listing.translations[app.request.locale] %}
+    {% set listing_location = listing.location %}
+    {% set listing_user = listing.user %}
+    {% set price = (listing.price / 100) | format_price(app.request.locale, 0) %}
+    {% set listing_image = listing.images|length ? listing.images[0].name : ListingImageConstants.IMAGE_DEFAULT %}
+    {% set user_image = listing_user.images|length ? listing_user.images[0].name : UserImageConstants.IMAGE_DEFAULT %}
+
+    <article class="listing-post" data-lid="{{ listing.id }}">
+        <a href="javascript:void(0)" id="favourite-{{ listing.id }}" class="favourit">
+            <i class="icon-heart"></i>
+            <span class="hidden">favourit</span>
+        </a>
+        <a href="{{ path('cocorico_listing_show', { 'slug': listing_translation.slug }) }}">
+
+            <div class="frame">
+<row>
+<div class="col-sm-4 col-xs-8">
+<img class="customer-image" src="{{ (UserImageConstants.IMAGE_FOLDER ~ user_image) | imagine_filter('user_medium') }}"
+                                     alt="{{ listing_user.firstName }}"/>
+</div>
+<div class="col-sm-4 col-xs-8">
+                                <h2>{{ listing_user.firstName }}</h2>
+</div>
+</row>
+<row>
+                <div class="post-info">
+                    <div class="img-holder col-sm-4 col-xs-8">
+                        <img src="{{ (ListingImageConstants.IMAGE_FOLDER ~  listing_image) | imagine_filter('listing_large') }}"
+                             alt="{{ listing_translation.title ~ " " ~ price }}"/>
+                    </div>
+
+                    <div class="col-sm-8 col-xs-16" style="color: black">
+                        <div class="col-sm-12 col-xs-16">
+                            <h2 class="listing-name">{{ listing_translation.title }}</h2>
+                            <div class="area">
+                                <div class="rating-block">
+                                    <!-- rating -->
+                                    {{ listing.averageRating | cocorico_star_rating }}
+                                    <span class="comment-counter">({{ listing.commentCount }})</span>
+                                </div>
+                                {% if  listing.certified %}
+                                    <span class="certified">
+                                            <i class="icon-ok"></i>
+                                            {{ 'listing.search.result.certified'|trans }}
+                                        </span>
+                                {% endif %}
+                            </div>
+                            <strong class="list-comma">
+                                Service:
+                            </strong>
+                            {%- for listingListingCategory in listing.listingListingCategories -%}
+                                <span>{{ listingListingCategory.category.translations[app.request.locale].name }}</span>
+                            {%- endfor -%}
+                            <br/>
+                            <strong>Cost: </strong>{{ price }}
+                            <p>{{ listing_translation.description }}</p>
+                        </div>
+                    </div>
+                    <br />
+                </div>
+ </row>           </div>
+
+        </a>
+        </a>
+    </article>
+{%- else -%}
+    {{ 'listing.search.result.no_results'|trans }}
+{%- endfor -%}
+
+<div data-id="nb-result-map-drag"
+     style="color: transparent">{{ 'listing.search.result.results'|trans({'%nb_results%': nb_listings}) }}</div>

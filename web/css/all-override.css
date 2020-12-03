@@ -5168,12 +5168,21 @@ h1[data-id="result-title"] {
 .bgimage {
   width:100%;
   height:550px;
-  background: url('/images/pages/doctor-holding-radiography-of-disabled-senior-woma-CQVB2YW.jpg');
+  background: url('/images/pages/people_mri_review.jpg');
   background-repeat: no-repeat;
   background-position: center;
   background-size:cover;
   background-attachment: fixed;
 }
+.bgimageWorks {
+  width:100%;
+  height:550px;  background: url('/images/pages/doctor-and-patientHero.jpg');
+  background-repeat: no-repeat;
+  background-position: center;
+  background-size:cover;
+  background-attachment: fixed;
+}
+
 .counter-wrap h3{
   line-height: 1.6;
 }
@@ -5181,8 +5190,10 @@ h1[data-id="result-title"] {
   color:white;
   text-shadow:2px 2px #333;
 }
-
-
+.bgimageWorks h1{
+  color:white;
+  text-shadow:2px 2px #333;
+}
 .pageTitle{
 	display:none;
 }

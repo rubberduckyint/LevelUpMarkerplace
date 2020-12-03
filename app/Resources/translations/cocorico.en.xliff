@@ -290,7 +290,7 @@
       </trans-unit>
       <trans-unit id="ae075cd0545e4ced4f09a93784ae2fc0dfc5e6cf" resname="nav.who_we_are.link">
         <source>nav.who_we_are.link</source>
-        <target>Who we are?</target>
+        <target>Who we are</target>
       </trans-unit>
       <trans-unit id="25752f0500683a8055d9b148a43277a0977e61ce" resname="nav.who_we_are.slug">
         <source>nav.who_we_are.slug</source>

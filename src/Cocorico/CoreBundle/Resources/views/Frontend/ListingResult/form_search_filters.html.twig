@@ -13,7 +13,7 @@
         {% endif %}
     </div>
 -->#}
-    <div class="col search-opt">
+    <div class="col search-opt" style="margin-top: 25px">
         {% include '@CocoricoCore/Frontend/ListingResult/_form_search_characteristics.html.twig' with {
             'characteristics' : form.characteristics
         } only %}
@@ -34,7 +34,7 @@
         {% do form.categories_fields.setRendered() %}
     {% endif %}
 
-    <div class="col btn-block text-right search-btn">
+    <div class="col btn-block text-right search-btn pull-right" style="margin-top: 25px">
         <button type="submit" class="btn btn-default" style="padding: 6px 14px 6px;">
             {{ 'listing.filter'|trans }}
         </button>

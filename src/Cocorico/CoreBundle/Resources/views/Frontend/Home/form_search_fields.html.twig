@@ -19,38 +19,48 @@
                 </div>
 
                 <div class="col pull-left formcell">
-                    <strong class="title">
-                        {{ form_label(form.location.address, null, {
-                            'required': false
-                        }) }}
-                    </strong>
-
-                    <div class="field-holder">
-                        {{ form_errors(form.location.address) }}
-                        {{ form_widget(form.location.address, {
-                            'id': 'location',
-                            'attr': {
-                                'class': 'form-control',
-                                'placeholder': 'listing.search.form.address.placeholder'|trans
-                            }
-                        } ) }}
-                        {{ form_rest(form.location) }}
+                    <div class="row">
+                        <div class="col pull-left">
+                            <strong class="title">
+                                {{ form_label(form.location.address, null, {
+                                    'required': false
+                                }) }}
+                            </strong>
+                        </div>
+                        <div class="col pull-right">
+                            <div class="field-holder">
+                                {{ form_errors(form.location.address) }}
+                                {{ form_widget(form.location.address, {
+                                    'id': 'location',
+                                    'attr': {
+                                        'class': 'form-control',
+                                        'placeholder': 'listing.search.form.address.placeholder'|trans
+                                    }
+                                } ) }}
+                                {{ form_rest(form.location) }}
+                            </div>
+                        </div>
                     </div>
                 </div>
                 <div class="col pull-left formcell">
-                    <strong class="title"><label for="title">Search</label></strong>
+                    <div class="row">
+                        <div class="col pull-left">
+                    <strong class="title" style="margin-right: 14px"><label for="title">Search</label></strong>
+                        </div>
+                        <div class="col pull-right">
                     <div class="field-holder">
                         {{ form_widget(form.title, {
                             'attr': {
                                 'class': 'form-control'
                             }
-                        })
-                        }}
+                        }) }}
+                    </div>
+                    </div>
                     </div>
                 </div>
-		<div class="col formcell pull-right">
-                	<input type="submit" value="{{ 'listing.search'|trans }}" class="btn btn-default">
-		</div>
+                <div class="col formcell pull-left">
+                    <input type="submit" value="{{ 'listing.search'|trans }}" class="btn btn-default">
+                </div>
             </div>
         </div>
     </div>

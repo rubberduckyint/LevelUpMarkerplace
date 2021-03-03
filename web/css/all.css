@@ -5543,8 +5543,9 @@ span.btn:focus {
     top: 0;
     right: 0;
     padding: 0;
-    width: 180px;
+    width: 218px;
     height: 36px;
+    margin-left: 6px;
 }
 
 .home-page .form-category .multiselect .btn-group, .home-page .form-category .multiselect .btn-default {
@@ -15093,7 +15094,8 @@ body > .jcf-select-drop.jcf-drop-flipped {
 /* styles for screens with width from 992px to 1024px */
 @media screen and (max-width: 1024px) {
     .home-page .form-category .multiselect .btn-group, .home-page .form-category .multiselect .btn-default {
-        width: 157px;
+        width: 219px;
+        margin-left: 26px;
     }
 
     .home-page .form-category .field-holder {

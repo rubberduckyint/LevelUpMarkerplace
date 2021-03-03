@@ -12,13 +12,14 @@
     <div class="row">
         <div class="col">
             <div class="area" style="margin-left:20px; width: 100%; max-width: 100%">
-                <div class="col formcell pull-left">
-                    <div class="multiselect">
+                <div class="col formcell pull-left" style="margin-left: 10px; margin-top: 5px">
+
+                            <div class="multiselect">
                         {{ form_widget(form.categories) }}
                     </div>
                 </div>
 
-                <div class="col pull-left formcell">
+                <div class="col pull-left formcell" style="margin-top: 5px">
                     <div class="row">
                         <div class="col pull-left">
                             <strong class="title">
@@ -42,7 +43,7 @@
                         </div>
                     </div>
                 </div>
-                <div class="col pull-left formcell">
+                <div class="col pull-left formcell" style="margin-top: 5px">
                     <div class="row">
                         <div class="col pull-left">
                     <strong class="title" style="margin-right: 14px"><label for="title">Search</label></strong>
@@ -58,7 +59,7 @@
                     </div>
                     </div>
                 </div>
-                <div class="col formcell pull-left">
+                <div class="col formcell" style="margin-top: 5px">
                     <input type="submit" value="{{ 'listing.search'|trans }}" class="btn btn-default">
                 </div>
             </div>

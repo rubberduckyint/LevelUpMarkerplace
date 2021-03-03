@@ -9,7 +9,7 @@
                 {% include '@CocoricoElasticsearch/_form_keywords.html.twig' %}
             {% endif %}
         </div>
-        <div class="col categories">
+        <div class="col categories" style="margin-top: 5px">
             <strong class="title">
                 {{ form_label(form.categories) }}
             </strong>
@@ -20,11 +20,9 @@
         </div>
 
 
-        <div class="col location">
+        <div class="col location" style="margin-top: 5px">
             <strong class="title">
-                {{ form_label(form.location.address, null, {
-                    'required': false
-                }) }}
+                <label for="title" style="width: 60px; display: inline-block;">Location</label>
             </strong>
 
             <div class="field-holder">
@@ -67,8 +65,8 @@
         </div>
         -->#}
 
- <div class="col location">
-     <strong class="title" style="margin-right: 29px"><label for="title">Search</label></strong>
+ <div class="col location" style="margin-top: 5px">
+     <strong class="title"><label for="title" style="width: 60px; display: inline-block;">Search</label></strong>
      <div class="field-holder">
         {{ form_widget(form.title, {
     'attr': {
@@ -79,6 +77,6 @@
      </div>
         </div>
 
-        <input type="submit" value="{{ 'listing.search'|trans }}" class="btn btn-default listing-btn">
+        <input type="submit" value="{{ 'listing.search'|trans }}" class="btn btn-default listing-btn" style="margin-top: 5px">
     </div>
 </fieldset>
